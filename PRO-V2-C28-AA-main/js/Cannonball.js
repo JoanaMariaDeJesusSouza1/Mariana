@@ -5,6 +5,7 @@ class Cannonball {
         }
         this.r =30 
         this.image=loadImage("./assets/cannonball.png")
+        this.trajectory = []
         this.body =Bodies.circle  (x,y,this.r,options)
         World.add(world,this.body)
     }
@@ -20,6 +21,14 @@ shoot (){
 
 }
   show(){
+      if (this.body.velocity.x>0&&this.body.position.x>300){
+          var position = [this.body.position.x,this.body.position.y]
+          this.trajectory.push (position)
+          for (let i = 0; i < this.trajectory.length; i++) {
+            image (this.image,this.trajectory[i][0],this.trajectory[i][1],5,5   )
+              
+          }
+      }
       var pos = this.body.position
 
       push()
